@@ -1,4 +1,5 @@
 import React from "react";
+import { auth } from "../firebase";
 
 const style={
    message:`flex items-center shadow-xl m-4 py-4 px-3 rounded-tl-full rounded-tr-full`,
@@ -8,9 +9,12 @@ const style={
 }
 
 const Message=(props)=>{
+   const messageClass=
+   props.message.id===auth.currentUser.uid?
+   `${style.sent}`:`${style.received}`;
    return (
       <div>
-         <div className={style.message}>
+         <div className={`${style.message} ${auth.currentUser && messageClass}`}>
             <p className={style.name}>{props.message.name}</p>
             <p>{props.message.text}</p>
          </div>

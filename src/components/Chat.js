@@ -1,8 +1,9 @@
 import React,{useState,useEffect,useRef} from "react";
 import Message from "./Message";
 import {collection,onSnapshot,query,orderBy} from 'firebase/firestore';
-import { db } from "../firebase";
+import { db,auth } from "../firebase";
 import SendMessage from "./SendMessage";
+import {useAuthState} from 'react-firebase-hooks/auth'
 
 const style={
    main:`flex flex-col p-[10px] relative `,
@@ -10,6 +11,8 @@ const style={
 
 const Chat=()=>{
    const scroll=useRef();
+   const [user]=useAuthState(auth);
+
    
    const [messages,setMessages]=useState([]);
    console.log(messages);
@@ -30,7 +33,7 @@ const Chat=()=>{
    return (
       <div>
          <main className={style.main}>
-            {messages && messages.map(message=>{
+            {(messages && user) && messages.map(message=>{
                return (
                   <Message
                      key={message.id}
