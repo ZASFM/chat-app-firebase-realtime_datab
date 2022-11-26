@@ -1,1 +1,5 @@
 node_modules
+txt.txt
+#Dependencies
+react-firebase-hooks
+react-google-button
