@@ -1,5 +1,6 @@
 node_modules
 txt.txt
+.env.local
 #Dependencies
-react-firebase-hooks
-react-google-button
+#react-firebase-hooks
+#react-google-button
